@@ -15,7 +15,7 @@ const ErrorMessage = (error: ErrorProps) => {
         alignItems: "center"
       }}
     >
-      <Typography variant="body1" color="warning">
+      <Typography variant="h4" color="warning">
         {error.message || "An error occurred."}
       </Typography>
     </Box>

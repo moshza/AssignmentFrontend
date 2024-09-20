@@ -3,41 +3,29 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import { Link as RouterLink } from 'react-router-dom';
 
 
 const Navbar = () => {
   return (
-    <>
-    <Box sx={{ flexGrow: 1 }}>
     <AppBar position="sticky" color='primary'>
-      <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="info"
-          aria-label="menu"
-          sx={{ mt: 2 }}
-        >
-        </IconButton>
-        <Typography variant="h5"  color='secondary' sx={{ flexGrow: 0, mr:5 }}>
-          MyStore
-        </Typography>
-        <Button component={RouterLink} to="/" color="inherit" sx={{ flexGrow: 0 }}>
-          Products
+    <Toolbar sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+      <Typography  variant="h5" color='secondary' component={RouterLink} to="/" sx={{ flexGrow: 1, textDecoration: "none" }}>
+        MyStore
+      </Typography>
+      <Box sx={{ display: { xs: 'block', md: 'flex' }, gap: 1 }}>
+        <Button component={RouterLink} to="/" color="inherit">
+          Catalog
         </Button>
-        <Button component={RouterLink} to="/add-product" color="inherit" sx={{ flexGrow: 0 }}>
+        <Button component={RouterLink} to="/add-product" color="inherit">
           Add Product
         </Button>
-         <Button component={RouterLink} to="/about" color="inherit">
+        <Button component={RouterLink} to="/about" color="inherit">
           About
-         </Button>
-        
-      </Toolbar>
-    </AppBar>
-  </Box>
-    </>
+        </Button>
+      </Box>
+    </Toolbar>
+  </AppBar>
   )
 }
 

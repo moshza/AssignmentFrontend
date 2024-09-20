@@ -14,7 +14,6 @@ body {
 .products-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px; 
   padding: 20px;
   justify-items: center; 
 }
@@ -27,4 +26,13 @@ body {
 .buttons {
   position: relative;
   bottom: 0;
+}
+
+@media screen and (max-width: 980px){
+  .products-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-items: center; 
+  }
 }

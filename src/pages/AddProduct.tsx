@@ -42,7 +42,7 @@ const AddProduct = () => {
 
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400, mx: 'auto', p: 2 }}>
-    <Typography variant="h4" color="secondary">Add Product</Typography>
+    <Typography variant="h4" textAlign="center" color="secondary">Add Product</Typography>
 
     <TextField
       fullWidth
