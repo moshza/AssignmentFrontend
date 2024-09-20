@@ -1,15 +1,25 @@
-
+import { Box, Typography } from "@mui/material";
 
 interface ErrorProps {
-    message: string;
+  message: string;
 }
 
 const ErrorMessage = (error: ErrorProps) => {
   return (
-    <div className="error-wrapper">
-        <h2 className="error-message">{error.message}</h2>
-    </div>
-  )
-}
+    <Box
+      sx={{
+        p: 2,
+        borderRadius: 1,
+        mb: 2,
+        textAlign: "center",
+        alignItems: "center"
+      }}
+    >
+      <Typography variant="body1" color="warning">
+        {error.message || "An error occurred."}
+      </Typography>
+    </Box>
+  );
+};
 
-export default ErrorMessage
+export default ErrorMessage;

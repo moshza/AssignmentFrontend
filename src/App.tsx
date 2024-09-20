@@ -7,6 +7,8 @@ import About from "./pages/About"
 import ProductDetails from "./pages/ProductDetails";
 import AddProduct from "./pages/AddProduct";
 import EditProduct from "./pages/EditProduct";
+import ErrorMessage from "./components/ErrorMessage";
+import { Box } from "@mui/material";
 
 
 function App() {
@@ -19,16 +21,27 @@ function App() {
       secondary: {
         main: '#657efc',
       },
+      warning: {
+        main: "#ed0915"
+      }
     },
   });
 
   const Layout = () => {
     return (
-      <>
-        <Navbar/>
+      <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+      }}
+    >
+      <Navbar />
+      <Box sx={{ flexGrow: 1 }}>
         <Outlet/>
-        <Footer/>
-      </>
+      </Box>
+      <Footer/>
+    </Box>
     )
   }
 
@@ -56,7 +69,11 @@ function App() {
         {
           path: "/about",
           element: <About/>
-        }
+        },
+        {
+          path: '*',
+          element: <ErrorMessage message={'Page not found'} />,
+        },
       ]
     }])
 

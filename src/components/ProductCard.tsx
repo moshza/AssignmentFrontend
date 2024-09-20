@@ -72,7 +72,7 @@ const ProductCard: React.FC<Props> = ({ product, onDelete }) => {
         <Button
           color="warning"
           size="small"
-          sx={{ ":hover": { filter: 'brightness(1.5)' } }}
+          sx={{ ":hover": { filter: 'brightness(0.5)' } }}
           onClick={() => onDelete(product.id)}
         >
           Delete Product

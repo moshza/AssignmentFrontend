@@ -18,7 +18,7 @@ const Navbar = () => {
           edge="start"
           color="info"
           aria-label="menu"
-          sx={{ mr: 2 }}
+          sx={{ mt: 2 }}
         >
         </IconButton>
         <Typography variant="h5"  color='secondary' sx={{ flexGrow: 0, mr:5 }}>

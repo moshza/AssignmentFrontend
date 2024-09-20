@@ -1,8 +1,18 @@
+import { Box, Container, Typography } from "@mui/material"
 
 
 const About = () => {
   return (
-    <h1>This website is a demo for an assignment only</h1>
+    <Container maxWidth="sm" sx={{ mt: 4, mb: 4 }}>
+      <Box sx={{ textAlign: 'center' }}>
+        <Typography color="secondary" variant="h4" component="h1" gutterBottom>
+          About This Website
+        </Typography>
+        <Typography variant="body1">
+          This website is a demo for an assignment only.
+        </Typography>
+      </Box>
+    </Container>
   )
 }
 

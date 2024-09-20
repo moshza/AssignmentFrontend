@@ -8,15 +8,13 @@ const Footer = () => {
   };
   return (
     <AppBar
+      className="footer-comp"
       position="static"
       color="primary"
       component="footer"
-      sx={{
+       sx={{
         py: 1,
-        position: "absolute",
-        bottom: "auto",
-        width: "100%",
-      }}
+       }}
     >
       <Toolbar>
         <Typography
@@ -26,8 +24,7 @@ const Footer = () => {
         >
           Made by Moysh{" "}
           <i className="fa fa-copyright" aria-hidden="true">
-            {" "}
-            Copyright {getCurrentYear()}
+           Copyright {getCurrentYear()} &#169;
           </i>
         </Typography>
       </Toolbar>
