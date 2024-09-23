@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material"
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../components/ErrorMessage";
+import { createProduct } from "../services/product";
 
 
 const AddProduct = () => {
@@ -29,15 +29,20 @@ const AddProduct = () => {
     
       const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        await axios.post('https://fakestoreapi.com/products',formData)
-        .then(res => {
-            console.log("Item added successfully:", res.data)
-            navigate("/")
-        })
-        .catch((error) => {
-            console.log(error)
-            setError(error.message)
-        })
+
+        const updatedFormData = {
+          ...formData,
+          price: parseFloat(formData.price),
+        };
+      
+        try {
+          const addedProduct = await createProduct(updatedFormData);
+          console.log("Item added successfully:", addedProduct);
+          navigate("/");
+        } catch (error: any) {
+          console.log(error);
+          setError(error.message);
+        }
       };
 
   return (

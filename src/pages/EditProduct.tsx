@@ -1,12 +1,10 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ErrorMessage from "../components/ErrorMessage";
-
+import { fetchSingleProducts, updateProduct } from "../services/product";
 
 const EditProduct = () => {
-
   const [formData, setFormData] = useState({
     title: "",
     price: "",
@@ -19,25 +17,25 @@ const EditProduct = () => {
 
   const navigate = useNavigate();
 
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    axios
-      .get(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => {
-
-        setFormData({
-          title: res.data.title || "",
-          price: res.data.price || "",
-          category: res.data.category || "",
-          description: res.data.description || "",
-          image: res.data.image || "",
+    if (id) {
+      fetchSingleProducts(id)
+        .then((prod) => {
+          setFormData({
+            title: prod.title || "",
+            price: prod.price || "",
+            category: prod.category || "",
+            description: prod.description || "",
+            image: prod.image || "",
+          });
+        })
+        .catch((error) => {
+          setError(error.message);
         });
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-  }, []);
+    }
+  }, [id]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -51,15 +49,24 @@ const EditProduct = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await axios.put(`https://fakestoreapi.com/products/${id}`, formData)
-      .then((res) => {
-        console.log("Item Edited successfully:", res.data);
+
+    const updatedFormData = {
+      ...formData,
+      price: parseFloat(formData.price),
+    };
+
+    if (id) {
+      try {
+        const updatedProduct = await updateProduct(id, updatedFormData);
+        console.log("Item Edited successfully:", updatedProduct);
         navigate("/");
-      })
-      .catch((error) => {
+      } catch (error: any) {
         console.log(error);
         setError(error.message);
-      });
+      }
+    } else {
+      console.error("Product ID is missing.");
+    }
   };
 
   return (
@@ -68,7 +75,7 @@ const EditProduct = () => {
       onSubmit={handleSubmit}
       sx={{ maxWidth: 400, mx: "auto", p: 2 }}
     >
-      <Typography variant="h4" color="secondary">
+      <Typography variant="h4" textAlign="center" color="secondary">
         Edit Product
       </Typography>
 

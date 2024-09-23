@@ -1,27 +1,28 @@
 import { Box, Button, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link as RouterLink } from 'react-router-dom';
 import { Product } from "../interfaces/Product";
+import { fetchSingleProducts } from "../services/product";
 
 
 const ProductDetails = () => {
   const [product, setProduct] = useState<Product>();
   const [error, setError] = useState();
 
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    axios
-      .get(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => {
-        setProduct(res.data);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  },[]);
+    if (id) { 
+      fetchSingleProducts(id)
+        .then((data) => {
+          setProduct(data);
+        })
+        .catch((error) => {
+          setError(error);
+        });
+    }
+  }, [id]);
   
   return (
     <>
