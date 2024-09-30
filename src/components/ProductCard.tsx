@@ -48,7 +48,7 @@ const ProductCard: React.FC<Props> = ({ product, onDelete }) => {
           {product.description}
         </Typography>
         <Typography variant="h6" sx={{ mt: 2 }}>
-          ${product.price.toFixed(2)}
+        ${Number(product.price).toFixed(2)}
         </Typography>
       </CardContent>
 
@@ -57,7 +57,7 @@ const ProductCard: React.FC<Props> = ({ product, onDelete }) => {
           color="secondary"
           size="small"
           sx={{ ":hover": { filter: 'brightness(1.5)' } }}
-          onClick={() => navigateToProdDetails(product.id)}
+          onClick={() => product.id && navigateToProdDetails(product.id)} // Only navigate if product.id exists
         >
           Show Details
         </Button>
@@ -65,7 +65,7 @@ const ProductCard: React.FC<Props> = ({ product, onDelete }) => {
           color="info"
           size="small"
           sx={{ ":hover": { filter: 'brightness(1.5)' } }}
-          onClick={() => navigateToEditProd(product.id)}
+          onClick={() => product.id && navigateToEditProd(product.id)}
         >
           Edit Product
         </Button>
@@ -73,7 +73,7 @@ const ProductCard: React.FC<Props> = ({ product, onDelete }) => {
           color="warning"
           size="small"
           sx={{ ":hover": { filter: 'brightness(0.5)' } }}
-          onClick={() => onDelete(product.id)}
+          onClick={() => product.id && onDelete(product.id)}
         >
           Delete Product
         </Button>

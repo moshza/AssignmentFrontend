@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { Product } from '../interfaces/Product';
 
-const API_URL = "https://fakestoreapi.com/products";
+const API_URL = "http://localhost:3000/products";
 
-export const fetchAllProducts = async (limit = 5) => {
+export const fetchAllProducts = async () => {
   try {
-    const response = await axios.get(`${API_URL}?limit=${limit}`);
+    const response = await axios.get(`${API_URL}`);
     return response.data;
   } catch (error) {
     if (error instanceof Error) {
