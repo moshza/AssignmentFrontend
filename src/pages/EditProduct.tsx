@@ -2,7 +2,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ErrorMessage from "../components/ErrorMessage";
-import { fetchSingleProducts, updateProduct } from "../services/product";
+import { fetchSingleProduct, updateProduct } from "../services/product";
 
 const EditProduct = () => {
   const [formData, setFormData] = useState({
@@ -21,14 +21,14 @@ const EditProduct = () => {
 
   useEffect(() => {
     if (id) {
-      fetchSingleProducts(id)
+      fetchSingleProduct(id)
         .then((prod) => {
           setFormData({
-            title: prod.title || "",
-            price: prod.price || "",
-            category: prod.category || "",
-            description: prod.description || "",
-            image: prod.image || "",
+            title: prod.product.title || "",
+            price: prod.product.price || "",
+            category: prod.product.category || "",
+            description: prod.product.description || "",
+            image: prod.product.image || "",
           });
         })
         .catch((error) => {

@@ -16,7 +16,7 @@ export const fetchAllProducts = async () => {
   }
 };
 
-export const fetchSingleProducts = async (id: string) => {
+export const fetchSingleProduct = async (id: string) => {
     try {
       const response = await axios.get(`${API_URL}/${id}`);
       return response.data;
