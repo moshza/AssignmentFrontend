@@ -16,7 +16,7 @@ import { Review } from "../interfaces/Review";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState<Product>();
-  const [review, setReview] = useState<Review[]>();
+  const [reviews, setReviews] = useState<Review[]>();
   const [error, setError] = useState();
 
   const { id } = useParams<{ id: string }>();
@@ -26,7 +26,7 @@ const ProductDetails = () => {
       fetchSingleProduct(id)
         .then((data) => {
           setProduct(data.product);
-          setReview(data.reviews);
+          setReviews(data.reviews);
         })
         .catch((error) => {
           setError(error);
@@ -93,8 +93,8 @@ const ProductDetails = () => {
             <Typography variant="h5" color="secondary" sx={{ mb: 2 }}>
               Reviews:
             </Typography>
-            {review && review?.length > 0 ? (
-              review?.map((review, index) => (
+            {reviews && reviews?.length > 0 ? (
+              reviews?.map((review, index) => (
                 <Card key={index} sx={{ mb: 2, boxShadow: 1, padding: 2 }}>
                   <Typography variant="h6" fontWeight="bold">{review.review_title}</Typography>
                   <Typography variant="body1" sx={{ mb: 1 }}>
