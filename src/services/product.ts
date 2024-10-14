@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { Product } from '../interfaces/Product';
 
-const API_URL = "http://localhost:3000/products";
+// import.meta.env.VITE_API_URL ||
+
+const API_URL =  "http://localhost:3000/products";
 
 export const fetchAllProducts = async () => {
   try {
